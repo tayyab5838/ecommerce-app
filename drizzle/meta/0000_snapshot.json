@@ -1,0 +1,64 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "32c7f9d1-68ca-4d7a-906f-2d9a78a549eb",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "registration": {
+      "name": "registration",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'user'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "registration_email_unique": {
+          "name": "registration_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
