@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "drizzle-kit generate:pg",
+    "drop": "drizzle-kit drop --out=drizzle",
+    "migrate": "node -r esbuild-register src/lib/db/migrate.ts"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -16,15 +19,20 @@
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
+    "@vercel/postgres": "^0.4.1",
     "autoprefixer": "10.4.14",
     "class-variance-authority": "^0.6.0",
     "clsx": "^1.2.1",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.28.2",
+    "esbuild-register": "^3.4.2",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "lucide-react": "^0.224.0",
     "next": "13.4.4",
     "next-sanity": "^4.3.3",
     "postcss": "8.4.24",
+    "postgres": "^3.3.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
@@ -39,6 +47,7 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
-    "@types/react-slick": "^0.23.10"
+    "@types/react-slick": "^0.23.10",
+    "drizzle-kit": "^0.19.13"
   }
 }

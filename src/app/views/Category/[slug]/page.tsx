@@ -4,8 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { client } from "../../../../../sanity/lib/client";
 import imageUrlBuilder from "@sanity/image-url";
-import Header from "../../Header/page";
-import Footer from "../../Footer/page";
+import Header from "../../../../components/Header";
+import Footer from "../../../../components/Footer";
 
 const builder = imageUrlBuilder(client);
 
@@ -24,17 +24,21 @@ const getProductByCategory = async (category: any) => {
 const page = async ({ params }: { params: { slug: string } }) => {
   const result = await getProductByCategory(params.slug);
   return (
-    <div className="mx-16">
+    <>
       <Header />
-      <div className="grid grid-cols-4 gap-y-6 gap-x-4 mt-10">
-        {result.map((item: any) => {
-          return (
-            <>
-              <div className="mt-4">
-                <Link href={`/components/OrderPage/${item._id}`}>
-                  <div className="h-40 overflow-hidden">
+      <div className="mx-16">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-y-6 sm:gap-x-4 mt-10">
+          {result.map((item: any) => {
+            return (
+              <div
+                key={item._id}
+                className="mt-4 flex justify-center items-center"
+              >
+                <Link href={`../views/OrderPage/${item._id}`}>
+                  <div className="overflow-hidden h-72 w-64 sm:h-48 sm:w-44">
                     <Image
                       src={urlFor(item.image[0].asset._ref).url()}
+                      className="w-full h-full"
                       alt="Product image 2"
                       width={150}
                       height={160}
@@ -51,12 +55,12 @@ const page = async ({ params }: { params: { slug: string } }) => {
                   </span>
                 </Link>
               </div>
-            </>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

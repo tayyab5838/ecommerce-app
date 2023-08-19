@@ -8,12 +8,12 @@ const ShoppingCart = () => {
   const items = useSelector((state: any) => state.cart.items);
   console.log(items);
   return (
-    <div>
+    <div className="pl-9">
       {/* shoping cart */}
-      <Link href={"/components/cart"}>
-        <div className="p-1.5 rounded-full bg-[#f1f1f1] cursor-pointer">
+      <Link href={"../../views/cart"}>
+        <div className="p-3 rounded-full bg-[#f1f1f1] w-fit cursor-pointer">
           <CgShoppingCart className="relative" />
-          <span className="absolute top-3 h-3 w-3 ml-2  font-extralight text-[8px] text-center rounded-full bg-[#f02d34] text-white">
+          <span className="absolute top-9 md:top-9 h-4 w-4 ml-2 flex items-center justify-center font-extralight text-[8px] text-center rounded-full bg-[#f02d34] text-white">
             {items.length}
           </span>
         </div>

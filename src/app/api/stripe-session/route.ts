@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
           enabled: true,
         },
 
-        success_url: `${request.headers.get("origin")}/components/Success`,
+        success_url: `${request.headers.get("origin")}/views/Success`,
         cancel_url: `${request.headers.get("origin")}/?canceled=true`,
       });
       return NextResponse.json({ session });

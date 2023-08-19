@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Header from "../../Header/page";
+import Header from "../../../../components/Header";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../../../sanity/lib/client";
 import { getProductData } from "@/app/page";
-import Footer from "../../Footer/page";
-import CopyRight from "../../CopyRightSection/page";
+import Footer from "../../../../components/Footer";
+import CopyRight from "../../../../components/CopyRightSction";
 import { CgShoppingCart } from "react-icons/cg";
 import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 import { useDispatch } from "react-redux";
@@ -75,51 +75,61 @@ const OrderPage = ({ params }: { params: { id: string } }) => {
 
   return (
     <>
-      <div className="mx-16">
-        <div>
-          <Header />
-        </div>
-        <div className="flex justify-between bg-[#fcfcfc]">
-          <div className="space-y-4 ">
-            {filterProduct?.image.map((item: any, index: number) => (
-              <div onMouseEnter={() => setSelectedImage(item._key)}>
-                <Image
-                  key={index}
-                  src={urlFor(item.asset._ref).url()}
-                  alt={item.title}
-                  height={70}
-                  width={65}
-                />
-              </div>
-            ))}
+      <Header />
+      <div className="px-8 md:px-16  pb-4 bg-[#fcfcfc]">
+        <div className="flex flex-col md:flex-row py-4">
+          <div className="flex gap-x-4">
+            {/* side small images */}
+            <div className="space-y-4 mr-3 h-fit">
+              {filterProduct?.image.map((item: any) => (
+                <div
+                  key={item._id}
+                  onMouseEnter={() => setSelectedImage(item._key)}
+                  className="h-14 sm:w-20 sm:h-20 w-14"
+                >
+                  <Image
+                    className="w-full h-full"
+                    key={item._id}
+                    src={urlFor(item.asset._ref).url()}
+                    alt="small image"
+                    height={70}
+                    width={65}
+                  />
+                </div>
+              ))}
+            </div>
+            {/* center image */}
+            <div className="flex flex-col flex-1">
+              {filterProduct?.image.map((subItem: any, i: any) => {
+                if (subItem._key == selectedImage) {
+                  return (
+                    <div key={i}>
+                      <Image
+                        src={urlFor(subItem.asset._ref).url()}
+                        alt="Image 1"
+                        height={450}
+                        width={350}
+                        className="w-60 sm:w-64 md:w-80 h-64 sm:h-64 md:h-80 shrink-0"
+                      />
+                    </div>
+                  );
+                }
+              })}
+            </div>
           </div>
-          <div>
-            {filterProduct?.image.map((subItem: any, i: any) => {
-              if (subItem._key == selectedImage) {
-                return (
-                  <div key={i}>
-                    <Image
-                      src={urlFor(subItem.asset._ref).url()}
-                      alt="Image 1"
-                      height={450}
-                      width={350}
-                    />
-                  </div>
-                );
-              }
-            })}
-          </div>
-          <div className="self-center mr-20">
+
+          {/* product detail */}
+          <div className=" my-4 sm:my-0 mr-20 mt-10 md:mt-0 sm:flex sm:flex-col md:ml-4 sm:flex-1 items-start sm:justify-center sm:items-center">
             {filterProduct && (
-              <>
-                <h3 className="font-soraFont font-semibold text-sm">
+              <div>
+                <h3 className="font-soraFont font-semibold text-base">
                   {filterProduct.title}
                 </h3>
                 <p className="font-soraFont text-sm font-medium text-[#b0b0b0]">
                   Dress
                 </p>
                 <div className="mt-6 ">
-                  <h6 className="font-soraFont font-medium text-xs">
+                  <h6 className="font-soraFont font-medium text-sm">
                     SELECT SIZE
                   </h6>
                   <div className="space-x-4 font-normal text-xs mt-2 text-[#666666]">
@@ -146,10 +156,10 @@ const OrderPage = ({ params }: { params: { id: string } }) => {
                     <HiOutlinePlusSm />
                   </button>
                 </div>
-                <div className="flex items-center mt-3">
+                <div className="flex items-center mt-3 shrink-0">
                   <button
                     onClick={() => addToCart(filterProduct)}
-                    className="bg-black py-1 px-2 text-white font-soraFont text-xs font-normal mr-2 flex items-center gap-x-2"
+                    className="bg-black shrink-0 py-1 px-2 text-white font-soraFont text-sm font-normal mr-2 flex items-center gap-x-2"
                   >
                     <CgShoppingCart />
                     Add to Cart
@@ -158,25 +168,26 @@ const OrderPage = ({ params }: { params: { id: string } }) => {
                     ${filterProduct.price}.00
                   </p>
                 </div>
-              </>
+              </div>
             )}
           </div>
         </div>
+
         {/* Product Information */}
-        <div className="mt-20">
+        <div className="mt-20 py-20 px-8 bg-white">
           <div className="flex items-center">
-            <h5 className="absolute font-soraFont text-7xl text-[#757774] opacity-5 font-bold ">
+            <h5 className="absolute font-soraFont text-5xl md:text-7xl sm:text-5xl text-[#757774] opacity-5 font-bold ">
               Overview
             </h5>
-            <h4 className="font-soraFont font-semibold text-sm">
+            <h4 className="font-soraFont font-semibold text-normal">
               Product Information
             </h4>
           </div>
-          <div className="flex mt-12 border-t-2 brodet-t-[#c4c4c4] pt-4">
+          <div className="flex flex-col sm:flex-row mt-12 border-t-2 brodet-t-[#c4c4c4] pt-4">
             <h4 className="font-soraFont text-xs text-[#666666] font-semibold flex-1">
               PRODUCT DETAILS
             </h4>
-            <p className="flex-[2_2_0%] text-justify text-[#212121] text-xs font-light">
+            <p className="flex-[2_2_0%] mt-2 sm:mt-0 text-justify text-[#212121] text-xs font-light">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -186,11 +197,11 @@ const OrderPage = ({ params }: { params: { id: string } }) => {
               sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
-          <div className="flex mt-4">
+          <div className="flex flex-col sm:flex-row mt-4">
             <div className="font-soraFont text-xs text-[#666666] font-semibold flex-1">
               PRODUCT CARE
             </div>
-            <ul className="flex-[2_2_0%] list-disc pl-4">
+            <ul className="flex-[2_2_0%] mt-2 sm:mt-0 list-disc pl-4">
               <li className="font-soraFont font-normal text-xs text-[#222145]">
                 Lorem ipsum dolor sit amet
               </li>
@@ -200,8 +211,8 @@ const OrderPage = ({ params }: { params: { id: string } }) => {
             </ul>
           </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
       <CopyRight />
     </>
   );

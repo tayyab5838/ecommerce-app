@@ -1,18 +1,15 @@
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Products from "../app/views/Products/page";
+import PromotionsSection from "@/components/PromotionSection";
+import FeaturesSection from "@/components/FeaturesSection";
+import NewsLetter from "@/components/NewsLetter";
+import Footer from "@/components/Footer";
+import CopyRight from "@/components/CopyRightSction";
+import { client } from "../../sanity/lib/client";
+import { Image } from "sanity";
 
-import Header from './components/Header/page'
-import Hero from './components/Hero/page'
-import Products from './components/Products/page'
-import PromotionsSection from './components/PromotionSection/page'
-import FeaturesSection from './components/FeaturesSection/page'
-import NewsLetter from './components/NewsLetter/page'
-import Footer from './components/Footer/page'
-import CopyRight from './components/CopyRightSection/page'
-import { client } from '../../sanity/lib/client'
-import { Image } from 'sanity'
-
-
-
-export const getProductData = async()=>{
+export const getProductData = async () => {
   const res = await client.fetch(`*[_type=="product"]{
     title,
     description,
@@ -24,34 +21,31 @@ export const getProductData = async()=>{
     }
   }`);
   return res;
-}
+};
 
-interface IProduct{
-  title:string,
-  description:string,
-  price:number,
-  image:Image,
-  id:string
+interface IProduct {
+  title: string;
+  description: string;
+  price: number;
+  image: Image;
+  id: string;
 }
 
 export default async function Home() {
-
-  const data:IProduct = await getProductData()
-  
+  const data: IProduct = await getProductData();
 
   return (
     <>
-    <div className='mx-16'>
-    <Header/>
-    <Hero/>
-    <PromotionsSection productData={data}/>
-    <Products/>
-    <FeaturesSection/>
-    <NewsLetter/>
-    <Footer/>
-    </div>
-    <CopyRight/>
+      <div>
+        <Header />
+        <Hero />
+        <PromotionsSection productData={data} />
+        <Products />
+        <FeaturesSection />
+        <NewsLetter />
+        <Footer />
+      </div>
+      <CopyRight />
     </>
-    
-  )
+  );
 }
