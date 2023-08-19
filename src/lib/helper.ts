@@ -18,7 +18,7 @@ export function getErrorResponse(
   );
 }
 
-type EnvVariableKey = "JWT_SECRET_KEY" | "JWT_EXPIRES-IN";
+type EnvVariableKey = "JWT_SECRET_KEY" | "JWT_EXPIRES_IN";
 
 export function getEnvVariable(key: EnvVariableKey): string {
   const value = process.env[key];
