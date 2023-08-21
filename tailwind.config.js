@@ -1,21 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./src/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
-    fontFamily: {
-      soraFont: ["Sora", "sans-serif"],
-    },
     container: {
       center: true,
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+      },
+      fontFamily: {
+        soraFont: ["Sora", "sans-serif"],
       },
     },
     extend: {
