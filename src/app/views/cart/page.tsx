@@ -53,9 +53,6 @@ const Cart = () => {
       stripe?.redirectToCheckout({ sessionId: data.session.id });
     }
   };
-
-  console.log("cart page:", totalAmount);
-  console.log("cart page:", items);
   return (
     <>
       <Header />

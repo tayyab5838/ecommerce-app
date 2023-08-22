@@ -18,7 +18,7 @@ const PromotionsSection = ({ productData }: any) => {
     return product._id == "8b017722-d7fe-4bcf-96cc-9ae2238020eb";
   });
   const featureData = [event1, event2];
-  console.log("feature data ", featureData);
+
   return (
     <section className="max-w-7xl mx-auto">
       <div className="mt-12 mx-10 md:mx-16">
