@@ -11,9 +11,17 @@ export async function middleware(request: NextRequest) {
   }
 
   if (
+    token &&
+    (request.nextUrl.pathname.startsWith("/views/signup") ||
+      request.nextUrl.pathname.startsWith("/views/signin"))
+  ) {
+    return NextResponse.redirect(new URL("/", request.nextUrl));
+  }
+
+  if (
     !token &&
-    (request.nextUrl.pathname.startsWith("/api/users") ||
-      request.nextUrl.pathname.startsWith("/api/auth/logout"))
+    (request.nextUrl.pathname.startsWith("/views/profile") ||
+      request.nextUrl.pathname.startsWith("/views/logout"))
   ) {
     return getErrorResponse(
       401,
@@ -36,5 +44,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/api/users/:path*", "/api/auth/logout"],
+  matcher: [
+    "/views/signin",
+    "/views/signout",
+    "/views/profile",
+    "/views/signup",
+  ],
 };
