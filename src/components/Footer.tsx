@@ -7,8 +7,8 @@ import { TiSocialLinkedin } from "react-icons/ti";
 
 const Footer = () => {
   return (
-    <footer className="max-w-7xl mx-auto">
-      <div className="mt-32  mb-10 mx-10 md:mx-16">
+    <footer className="max-w-7xl mx-auto ">
+      <div className="mt-32  mb-10 mx-8 md:mx-10">
         <div className="flex flex-col md:flex-row">
           {/* left side */}
           <div className="flex flex-col basis-5/12">

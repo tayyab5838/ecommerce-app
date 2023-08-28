@@ -8,12 +8,25 @@ import {
 import { getErrorResponse } from "@/lib/helper";
 import { jwt_users } from "@/lib/db/schema/script";
 import { NextRequest, NextResponse } from "next/server";
+import { eq } from "drizzle-orm";
 
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as RegisterUserInput;
     const data = RegisterUserSchema.parse(body);
     const hashPassword = await hash(data.password, 12);
+
+    // check if email already exist
+    const userEmail = await db
+      .select({
+        email: jwt_users.email,
+      })
+      .from(jwt_users)
+      .where(eq(jwt_users.email, data.email));
+
+    if (userEmail.length > 0) {
+      return getErrorResponse(409, "Email already exist");
+    }
 
     const user = await db
       .insert(jwt_users)

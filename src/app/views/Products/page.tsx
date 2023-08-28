@@ -66,7 +66,7 @@ const Products = () => {
   };
 
   return (
-    <section className="max-w-5xl mx-auto">
+    <section className="max-w-7xl mx-auto">
       <div className="mt-16 mx-16">
         <header>
           <link
@@ -89,16 +89,16 @@ const Products = () => {
           <h3 className="font-bold font-soraFont">Check What We Have</h3>
         </div>
         {/* products container */}
-        <div>
-          <Slider className="mt-6" {...settings}>
+        <div className="">
+          <Slider className="mt-6 flex justify-between mx-auto" {...settings}>
             {allData.map((item: any) => (
               <div
                 key={item._id}
-                className="flex justify-center shrink-0 m-auto p-2 relative cursor-pointer transition-transform hover:scale-100 ease-in duration-300 focus:outline-none"
+                className=" relative cursor-pointer transition-transform hover:scale-90 ease-in duration-300 focus:outline-none"
                 onClick={() => handleSlideClick(item._id)}
               >
                 <Image
-                  className="content-center"
+                  className="content-center w-52 h-52 md:w-56 md:h-56 lg:w-64 lg:h-64"
                   src={urlFor(item.image[0].asset._ref).url()}
                   alt="Product image 1"
                   width={250}

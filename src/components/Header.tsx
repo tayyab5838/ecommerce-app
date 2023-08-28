@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import Link from "next/link";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import ShoppingCart from "../components/ShoppingCart";
+import DropMenu from "./DropMenu";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -12,19 +13,33 @@ const Header = () => {
   return (
     <header>
       <div
-        className={`max-w-screen-2xl mx-auto relative px-8 md:px-10 py-10 flex justify-between items-center bg-white`}
+        className={`max-w-7xl mx-auto relative px-8 md:px-10 py-6 flex justify-between items-center bg-white`}
       >
         <Link
           href="/"
           className={`${isMobileMenuOpen ? "fixed" : ""} shrink-0`}
         >
-          <Image src="/logo.webp" alt="Logo Image" height={55} width={80} />
+          <Image
+            src="/logo.webp"
+            alt="Logo Image"
+            className="mx-4"
+            height={55}
+            width={80}
+          />
         </Link>
         <nav className="hidden md:flex space-x-6 items-center">
-          <Link href="../views/Category/Male">Male</Link>
-          <Link href="../views/Category/Female">Female</Link>
-          <Link href="../views/Category/Kids">Kids</Link>
-          <Link href="../views/AllProducts">All Products</Link>
+          <div>
+            <Link href="/views/Category/Male">Male</Link>
+          </div>
+          <div>
+            <Link href="/views/Category/Female">Female</Link>
+          </div>
+          <div>
+            <Link href="/views/Category/Kids">Kids</Link>
+          </div>
+          <div>
+            <Link href="/views/AllProducts">All Products</Link>
+          </div>
           <div className="flex items-center border rounded-sm border-slate-300">
             <span className="px-2">
               <CiSearch />
@@ -37,6 +52,10 @@ const Header = () => {
           </div>
           <div>
             <ShoppingCart />
+          </div>
+          {/* Drop Menu */}
+          <div>
+            <DropMenu />
           </div>
         </nav>
         <div>
@@ -62,6 +81,7 @@ const Header = () => {
               <Link href="../views/Category/Female">Female</Link>
               <Link href="../views/Category/Kids">Kids</Link>
               <Link href="../views/AllProducts">All Products</Link>
+              <Link href="../views/signin">Sign In</Link>
             </ul>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { CgShoppingCart } from "react-icons/cg";
 function Hero() {
   return (
     <section className="max-w-7xl mx-auto">
-      <div className="mt-8 md:flex mx-10 md:mx-16">
+      <div className="mt-8 md:flex justify-between mx-10 md:mx-16">
         {/* Left side */}
         <div className="flex-1 mt-6">
           <h4 className="bg-[#e1edff] font-semibold text-blue-700 max-w-fit py-1 px-2 rounded-sm text-xs font-soraFont">
